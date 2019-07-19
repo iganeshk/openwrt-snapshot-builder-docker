@@ -1,6 +1,6 @@
 openwrt-snapshot-builder
 ========================
-[![Docker Build Status](https://img.shields.io/docker/build/iganeshk/openwrt-snapshot-builder-docker.svg)](https://hub.docker.com/r/iganesh/openwrt-snapshot-builder)
+[![Docker Build Status](https://img.shields.io/docker/build/iganesh/openwrt-snapshot-builder.svg)](https://hub.docker.com/r/iganesh/openwrt-snapshot-builder)
 [![License: MIT](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://img.shields.io/docker/build/iganeshk/openwrt-snapshot-builder-docker/blob/master/LICENSE)
 
 
