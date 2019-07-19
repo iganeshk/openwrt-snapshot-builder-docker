@@ -1,0 +1,1 @@
+export PATH=$PATH:/openwrt/openwrt/staging_dir/host/bin
