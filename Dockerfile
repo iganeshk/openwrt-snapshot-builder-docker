@@ -5,10 +5,10 @@ RUN set -eux; \
     echo "deb http://ftp.us.debian.org/debian/ buster main contrib non-free" >> /etc/apt/sources.list; \
     apt-get update; \
     apt-get install -y --no-install-recommends   \
-               ca-certificates wget less nano gosu \
+               apt-utils ca-certificates wget less nano gosu \
                subversion g++ zlib1g-dev build-essential git python rsync \
                libncurses5-dev gawk gettext unzip file libssl-dev wget \
-               bsdmainutils util-linux; \
+               bsdmainutils sudo; \
     apt-get autoclean; \
     apt-get clean; \
     apt-get autoremove; \
@@ -16,14 +16,15 @@ RUN set -eux; \
     # verify that the binary works
     gosu nobody true
 
-RUN mkdir -p /openwrt
+RUN useradd -ms /bin/bash openwrt; \
+    echo 'openwrt ALL=NOPASSWD: ALL' > /etc/sudoers.d/openwrt;
 
-WORKDIR "/openwrt"
+USER openwrt
+WORKDIR "/home/openwrt"
+ADD home/openwrt/snapshot_builder.sh /home/openwrt
+RUN sudo chown openwrt:openwrt /home/openwrt/snapshot_builder.sh
+RUN sudo chmod 755 /home/openwrt/snapshot_builder.sh
+RUN mkdir /home/openwrt
 
-ADD usr/local/bin /usr/local/bin/
-ADD home/ /openwrt
-
-RUN chmod 755 /usr/local/bin/entrypoint.sh 
-
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+# ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/bin/bash"]
