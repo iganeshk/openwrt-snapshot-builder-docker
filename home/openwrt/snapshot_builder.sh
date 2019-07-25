@@ -50,6 +50,11 @@ if [[ ! $GIT_REPO_VALID ]] && [[ ! "$GIT_REPO_NAME" = "openwrt" ]]; then
     exit 1
 fi
 
+if [[ ! -f "./.config" ]]; then
+    echo -e "\n${COL_RED}No configuration file (.config) found, running menuconfig. Run this script again to continue building snapshot.${COL_NC}"
+    make menuconfig; exit 1
+
+
 echo -e "\n${COL_CYAN}Current Version: ${COL_YELLOW}$(getWRTver)${COL_NC}"
 
 echo -e "\n${COL_MAG}Updating repository...${COL_NC}"

@@ -24,7 +24,6 @@ WORKDIR "/home/openwrt"
 ADD home/openwrt/snapshot_builder.sh /home/openwrt
 RUN sudo chown openwrt:openwrt /home/openwrt/snapshot_builder.sh
 RUN sudo chmod 755 /home/openwrt/snapshot_builder.sh
-RUN mkdir /home/openwrt
 
 # ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/bin/bash"]

@@ -49,8 +49,21 @@ if [[ -d "$OPENWRT_PATH" ]]; then
         exit 1
     fi
 else
-    echo -e "\n${COL_RED}Not a valid OpenWRT root directory, check environment variable!${COL_NC}"
-    exit 1
+    while true; do
+        read -p "\nNo OpenWRT build directory was found, Would you like to clone one? (y/N)" input_choice
+        case "$input_choice" in
+            [yY]*)
+                echo -e "\n${COL_LBLUE}Cloning OpenWRT Master Repository ${COL_NC}"
+                git clone https://git.openwrt.org/openwrt/openwrt.git -b 'master'
+                return
+                ;;
+            [nN]*)
+                return
+                ;;
+            *)
+                echo 'Invalid input' >&2
+        esac
+    done
 fi
 
 echo -e "\n${COL_LBLUE}Running docker container ${COL_NC}"
