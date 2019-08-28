@@ -6,7 +6,7 @@ RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends   \
                apt-utils ca-certificates wget less nano gosu \
-               subversion g++ zlib1g-dev build-essential git python rsync \
+               subversion g++ zlib1g-dev build-essential git python python3 rsync \
                libncurses5-dev gawk gettext unzip file libssl-dev wget \
                bsdmainutils sudo; \
     apt-get autoclean; \
